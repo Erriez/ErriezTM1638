@@ -1,30 +1,33 @@
 # TM1638 library for Arduino
 
-This is a 3-pin serial TM1638 library for Arduino. It supports a combined LED 
-driver controller and key-scan interface.
+This is a 3-pin serial TM1638 chip library for Arduino. It supports a combined 
+LED driver controller and key-scan interface.
 
 ![TM1638 chip](https://raw.githubusercontent.com/Erriez/ArduinoLibraryTM1638/master/extras/TM1638_pins.jpg)
 
 ## Hardware
 
 Connect power and 3 data pins to an Arduino board DIGITAL pins:
-* VDD (Power +5V +/- 10%)
+* VDD (Power 5V +/- 10%)
+* GND (Ground)
 * DIO (Bi-directional data input/output)
 * STB (Chip select)
 * CLK (Clock)
+
+The following TM1638 pins should be connected to LED's and buttons in a matrix:  
 * K1~K3 (Key-scan data input)
 * SEG/GRID (Output for LED matrix)
 
 ## Documentation
-[TM1638 Datasheet](https://github.com/Erriez/ArduinoLibraryTM1638/extras/TM1638_datasheet.pdf)
+[TM1638 Datasheet](https://github.com/Erriez/ArduinoLibraryTM1638/blob/master/extras/TM1638_datasheet.pdf)
 
 ## Example
-Examples | TM1638 | [Example](https://github.com/Erriez/ArduinoLibraryTM1638/examples/Example/Example.ino)
+Examples | TM1638 | [Example](https://github.com/Erriez/ArduinoLibraryTM1638/blob/master/examples/Example/Example.ino)
 
 ## Usage
 
 ### Initialization
-```c+++
+```c++
 #include "TM1638.h"
   
 // Connect display pins to the Arduino DIGITAL pins
@@ -45,12 +48,12 @@ tm1638.displayOn();
 ```
 
 ### Turn all LED's off
-```c+++
+```c++
 tm1638.clear();
 ```
 
 ### Get key-scan
-```c+++
+```c++
 uint32_t keys = tm1638.getKeyScan();
 ```
 
