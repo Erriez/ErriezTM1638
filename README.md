@@ -3,7 +3,7 @@
 This is a 3-pin serial TM1638 library for Arduino. It supports a combined LED 
 driver controller and key-scan interface.
 
-![TM1638 chip](https://github.com/Erriez/ArduinoLibraryTM1638/extras/TM1638_chip.jpg)
+![TM1638 chip](https://raw.githubusercontent.com/Erriez/ArduinoLibraryTM1638/master/extras/TM1638_pins.jpg)
 
 ## Hardware
 
