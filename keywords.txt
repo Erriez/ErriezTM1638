@@ -1,0 +1,28 @@
+#######################################
+# TM1638 library for Arduino
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+TM1638		KEYWORD1
+tm1638		KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+displayOn		KEYWORD2
+displayOff		KEYWORD2
+setBrightness	KEYWORD2
+clear			KEYWORD2
+getKeyScan		KEYWORD2
+writeDisplayRegister	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
