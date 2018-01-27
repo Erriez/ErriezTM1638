@@ -22,6 +22,10 @@
  * SOFTWARE.
  */
 
+/* TM1638 library for Arduino
+ * https://github.com/Erriez/ArduinoLibraryTM1638
+ */
+
 #include <Arduino.h>
 #include <TM1638.h>
 
