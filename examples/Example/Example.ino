@@ -22,7 +22,8 @@
  * SOFTWARE.
  */
 
-#include "TM1638.h"
+#include <Arduino.h>
+#include <TM1638.h>
 
 // Connect display pins to the Arduino DIGITAL pins
 #define DIO_PIN   2
