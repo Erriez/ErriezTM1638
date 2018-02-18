@@ -23,7 +23,7 @@
  */
 
 /* TM1638 library for Arduino
- * https://github.com/Erriez/ArduinoLibraryTM1638
+ * https://github.com/Erriez/ErriezTM1638
  */
 
 #ifndef TM1638_H__

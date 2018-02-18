@@ -3,7 +3,7 @@
 This is a 3-pin serial TM1638 chip library for Arduino. It supports a combined 
 LED driver controller and key-scan interface.
 
-![TM1638 chip](https://raw.githubusercontent.com/Erriez/ArduinoLibraryTM1638/master/extras/TM1638_pins.jpg)
+![TM1638 chip](https://raw.githubusercontent.com/Erriez/ErriezTM1638/master/extras/TM1638_pins.jpg)
 
 ## Hardware
 
@@ -19,10 +19,10 @@ The following TM1638 pins should be connected to LED's and buttons in a matrix:
 * SEG/GRID (Output for LED matrix)
 
 ## Documentation
-[TM1638 Datasheet](https://github.com/Erriez/ArduinoLibraryTM1638/blob/master/extras/TM1638_datasheet.pdf)
+[TM1638 Datasheet](https://github.com/Erriez/ErriezTM1638/blob/master/extras/TM1638_datasheet.pdf)
 
 ## Example
-Examples | TM1638 | [Example](https://github.com/Erriez/ArduinoLibraryTM1638/blob/master/examples/Example/Example.ino)
+Examples | TM1638 | [Example](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Example/Example.ino)
 
 ## Usage
 
@@ -73,7 +73,7 @@ tm1638.writeDisplayRegister(0x01, 0x01);
 ## Installation
 1. Start the Arduino IDE.
 2. Download the latest version from:  
-   https://github.com/Erriez/ArduinoLibraryTM1638/archive/master.zip
+   https://github.com/Erriez/ErriezTM1638/archive/master.zip
 3. Click Sketch | Include Library | Add .ZIP Library... and select this ZIP.
 5. Run the example.
 
