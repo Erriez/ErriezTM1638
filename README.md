@@ -1,9 +1,12 @@
 # TM1638 library for Arduino
 
-This is a 3-pin serial TM1638 chip library for Arduino. It supports a combined 
-LED driver controller and key-scan interface.
+This is a 3-pin serial TM1638 chip library for Arduino. It supports a combined LED driver controller and key-scan interface. 
 
 ![TM1638 chip](https://raw.githubusercontent.com/Erriez/ErriezTM1638/master/extras/TM1638_pins.jpg)
+
+Displaying numbers, characters and reading keys depends on the hardware wiring and is not part of this library. A fully operational example for a board with 8 7-segment displays, 8 dual color LED's and 8 buttons which uses this library is available here: [JY-LKM1638](https://github.com/Erriez/ErriezLKM1638).
+
+
 
 ## Hardware
 
@@ -17,6 +20,33 @@ Connect power and 3 data pins to an Arduino board DIGITAL pins:
 The following TM1638 pins should be connected to LED's and buttons in a matrix:  
 * K1~K3 (Key-scan data input)
 * SEG/GRID (Output for LED matrix)
+
+
+
+
+## Supported Arduino boards
+
+* All ATMega328P MCU:
+  * Arduino UNO
+  * Arduino Nano
+* All ATMega32U4 MCU's:
+  * Arduino Leonardo
+  * Pro Micro
+* All ATMega2560 MCU's:
+  * Arduino Mega2560
+
+
+* Other Arduino AVR MCU's may work, but are not tested.
+* Other targets such as ESP8266/Lolin32 are not tested.
+* The chip requires a 5V power supply and does not work at 3.3V.
+* Check maximum regulator / diode current to prevent a burnout when using lots of LED's. Some boards can provide only 100mA, others 800mA max.
+* The DIO data pin requires a bi-directional level converter when connecting to 3.3V digital pins.
+
+
+
+## Library dependencies
+
+- None
 
 
 
@@ -92,6 +122,3 @@ tm1638.writeDisplayRegister(0x01, 0x01);
 ```
 
 
-
-## Library dependencies
-* None
