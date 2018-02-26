@@ -22,8 +22,56 @@
  * SOFTWARE.
  */
 
-/* TM1638 library for Arduino
- * https://github.com/Erriez/ErriezTM1638
+/*!
+ * \brief TM1638 library for Arduino
+ * \details Source: https://github.com/Erriez/ErriezTM1638
+ * \file TM1638.h
+ * \verbatim
+   Command / register definitions
+
+   MSB           LSB
+    7 6 5 4 3 2 1 0
+   -----------------
+    0 1 - - - - - -	Data command
+    1 0 - - - - - -	Display control command
+    1 1 - - - - - -	Address command
+
+
+   7.1 Data Command Set
+
+   MSB           LSB
+    7 6 5 4 3 2 1 0
+   -----------------
+    0 1 0 0 0 - 0 0  Write display data
+    0 1 0 0 0 - 1 0	Read key scan data
+    0 1 0 0 0 0 - -	Auto address increment
+    0 1 0 0 0 1 - -	Fixed address
+
+
+   7.2 Address command set
+
+   MSB           LSB
+    7 6 5 4 3 2 1 0
+   -----------------
+    1 1 0 - A A A A	Address 0x00..0x0F
+
+
+   7.3 Display Control
+
+   MSB           LSB
+    7 6 5 4 3 2 1 0
+   -----------------
+    1 0 0 0 - 0 0 0	Set the pulse width of 1 / 16
+    1 0 0 0 - 0 0 1	Set the pulse width of 2 / 16
+    1 0 0 0 - 0 1 0	Set the pulse width of 4 / 16
+    1 0 0 0 - 0 1 1	Set the pulse width of 10 / 16
+    1 0 0 0 - 1 0 0	Set the pulse width of 11 / 16
+    1 0 0 0 - 1 0 1	Set the pulse width of 12 / 16
+    1 0 0 0 - 1 1 0	Set the pulse width of 13 / 16
+    1 0 0 0 - 1 1 1	Set the pulse width of 14 / 16
+    1 0 0 0 0 - - -	Display off
+    1 0 0 0 1 - - -	Display on
+   \endverbatim
  */
 
 #ifndef TM1638_H__
@@ -31,60 +79,15 @@
 
 #include <Arduino.h>
 
-/* Command / register definitions
+#define TM1638_WRITE_DISPLAY_ADDR_INC	  0x40 //!< Write address with auto increment
+#define TM1638_WRITE_DISPLAY_ADDR_FIX	  0x44 //!< Write fixed address
+#define TM1638_READ_KEYS				        0x42 //!< Address increment
 
-  MSB           LSB
-   7 6 5 4 3 2 1 0
-  -----------------
-   0 1 - - - - - -	Data command
-   1 0 - - - - - -	Display control command
-   1 1 - - - - - -	Address command
+#define TM1638_WRITE_DISPLAY_CTRL		    0x80 //!< Display control address write
 
+#define TM1638_DISPLAY_ADDR						  0xc0 //!< Display address
 
-  7.1 Data Command Set
-
-  MSB           LSB
-   7 6 5 4 3 2 1 0
-  -----------------
-   0 1 0 0 0 - 0 0  Write display data
-   0 1 0 0 0 - 1 0	Read key scan data
-   0 1 0 0 0 0 - -	Auto address increment
-   0 1 0 0 0 1 - -	Fixed address
-
-
-  7.2 Address command set
-
-  MSB           LSB
-   7 6 5 4 3 2 1 0
-  -----------------
-   1 1 0 - A A A A	Address 0x00..0x0F
-
-
-  7.3 Display Control
-
-  MSB           LSB
-   7 6 5 4 3 2 1 0
-  -----------------
-   1 0 0 0 - 0 0 0	Set the pulse width of 1 / 16
-   1 0 0 0 - 0 0 1	Set the pulse width of 2 / 16
-   1 0 0 0 - 0 1 0	Set the pulse width of 4 / 16
-   1 0 0 0 - 0 1 1	Set the pulse width of 10 / 16
-   1 0 0 0 - 1 0 0	Set the pulse width of 11 / 16
-   1 0 0 0 - 1 0 1	Set the pulse width of 12 / 16
-   1 0 0 0 - 1 1 0	Set the pulse width of 13 / 16
-   1 0 0 0 - 1 1 1	Set the pulse width of 14 / 16
-   1 0 0 0 0 - - -	Display off
-   1 0 0 0 1 - - -	Display on
-*/
-
-#define TM1638_WRITE_DISPLAY_ADDR_INC	  0x40
-#define TM1638_WRITE_DISPLAY_ADDR_FIX	  0x44
-#define TM1638_READ_KEYS				        0x42 /* Address increment */
-
-#define TM1638_WRITE_DISPLAY_CTRL		    0x80
-
-#define TM1638_ADDR						          0xc0
-
+//! TM1638 class
 class TM1638
 {
 public:

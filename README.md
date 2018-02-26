@@ -18,15 +18,24 @@ The following TM1638 pins should be connected to LED's and buttons in a matrix:
 * K1~K3 (Key-scan data input)
 * SEG/GRID (Output for LED matrix)
 
+
+
 ## Documentation
+
 [TM1638 Datasheet](https://github.com/Erriez/ErriezTM1638/blob/master/extras/TM1638_datasheet.pdf)
 
+
+
 ## Example
+
 Examples | TM1638 | [Example](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Example/Example.ino)
+
+
 
 ## Usage
 
-### Initialization
+**Initialization**
+
 ```c++
 // Include TM1638 library
 #include "TM1638.h"
@@ -40,7 +49,10 @@ Examples | TM1638 | [Example](https://github.com/Erriez/ErriezTM1638/blob/master
 TM1638 tm1638(DIO_PIN, SCL_PIN, STB_PIN);
 ```
 
-### Display on/off
+
+
+**Display on/off**
+
 ```c++
 // Turn display off
 tm1638.displayOff();
@@ -49,19 +61,28 @@ tm1638.displayOff();
 tm1638.displayOn();
 ```
 
-### Turn all LED's off
+
+
+**Turn all LED's off**
+
 ```c++
 // Turn all LED's off
 tm1638.clear();
 ```
 
-### Get key-scan
+
+
+**Get key-scan**
+
 ```c++
 // Get 32-bit key-scan
 uint32_t keys = tm1638.getKeyScan();
 ```
 
-### Write display register
+
+
+**Write display register**
+
 ```c++
 // Write segment LED's to the first display register
 // The LED's turned on depends on your hardware SEG/GRID connections
@@ -70,12 +91,7 @@ uint32_t keys = tm1638.getKeyScan();
 tm1638.writeDisplayRegister(0x01, 0x01);
 ```
 
-## Installation
-1. Start the Arduino IDE.
-2. Download the latest version from:  
-   https://github.com/Erriez/ErriezTM1638/archive/master.zip
-3. Click Sketch | Include Library | Add .ZIP Library... and select this ZIP.
-5. Run the example.
+
 
 ## Library dependencies
 * None
