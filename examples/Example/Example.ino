@@ -23,7 +23,7 @@
  */
 
 /* TM1638 library for Arduino
- * https://github.com/Erriez/ArduinoLibraryTM1638
+ * https://github.com/Erriez/ErriezTM1638
  */
 
 #include <Arduino.h>
@@ -73,14 +73,13 @@ void loop()
   if (keysLast != keys) {
     keysLast = keys;
 
-    if (keys) {
-      Serial.println(F("Key down"));
+    Serial.print(F("Keys: 0x"));
+    Serial.println(keys, HEX);
 
+    if (keys) {
       // Write segment LED's to first display register
       tm1638.writeDisplayRegister(0, 0b00111111);
     } else {
-      Serial.println(F("Key up"));
-
       // Write segment LED's to first display register
       tm1638.writeDisplayRegister(0, 0b00000110);
     }
