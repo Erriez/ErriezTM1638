@@ -8,7 +8,7 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/cmake/ArduinoToolchain.cmake)
 if(WIN32)
     set(SKETCHBOOK_DIR  C:/Users/$ENV{USERNAME}/Documents/Arduino)
 elseif(UNIX)
-    set(SKETCHBOOK_DIR  $ENV{HOME}/Arduino/libraries)
+    set(SKETCHBOOK_DIR  $ENV{HOME}/Arduino)
 endif()
 
 # Configure one sketch
