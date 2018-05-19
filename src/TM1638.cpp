@@ -186,6 +186,7 @@ uint8_t TM1638::readByte()
     // Read 8-bit
     for (uint8_t i = 0; i < 8; i++) {
         digitalWrite(_clkPin, LOW);
+        delayMicroseconds(1);
         if (digitalRead(_dioPin)) {
             data |= (1 << i);
         }
