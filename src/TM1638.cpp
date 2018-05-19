@@ -168,6 +168,7 @@ void TM1638::writeCommand(uint8_t cmd)
     digitalWrite(_stbPin, LOW);
     writeByte(cmd);
     digitalWrite(_stbPin, HIGH);
+    delayMicroseconds(1);
 }
 
 /*!
@@ -214,5 +215,6 @@ void TM1638::writeByte(uint8_t data)
         }
 
         digitalWrite(_clkPin, HIGH);
+        delayMicroseconds(1);
     }
 }
