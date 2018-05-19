@@ -41,6 +41,9 @@ uint32_t keysLast = 0;
 void setup()
 {
   Serial.begin(115200);
+  while (!Serial) {
+    ;
+  }
   Serial.println(F("TM1638 example"));
 
   // Turn display off (All LED's off)
