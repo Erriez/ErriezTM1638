@@ -32,9 +32,9 @@
    MSB           LSB
     7 6 5 4 3 2 1 0
    -----------------
-    0 1 - - - - - -	Data command
-    1 0 - - - - - -	Display control command
-    1 1 - - - - - -	Address command
+    0 1 - - - - - -    Data command
+    1 0 - - - - - -    Display control command
+    1 1 - - - - - -    Address command
 
 
    7.1 Data Command Set
@@ -43,9 +43,9 @@
     7 6 5 4 3 2 1 0
    -----------------
     0 1 0 0 0 - 0 0  Write display data
-    0 1 0 0 0 - 1 0	Read key scan data
-    0 1 0 0 0 0 - -	Auto address increment
-    0 1 0 0 0 1 - -	Fixed address
+    0 1 0 0 0 - 1 0    Read key scan data
+    0 1 0 0 0 0 - -    Auto address increment
+    0 1 0 0 0 1 - -    Fixed address
 
 
    7.2 Address command set
@@ -53,7 +53,7 @@
    MSB           LSB
     7 6 5 4 3 2 1 0
    -----------------
-    1 1 0 - A A A A	Address 0x00..0x0F
+    1 1 0 - A A A A    Address 0x00..0x0F
 
 
    7.3 Display Control
@@ -61,16 +61,16 @@
    MSB           LSB
     7 6 5 4 3 2 1 0
    -----------------
-    1 0 0 0 - 0 0 0	Set the pulse width of 1 / 16
-    1 0 0 0 - 0 0 1	Set the pulse width of 2 / 16
-    1 0 0 0 - 0 1 0	Set the pulse width of 4 / 16
-    1 0 0 0 - 0 1 1	Set the pulse width of 10 / 16
-    1 0 0 0 - 1 0 0	Set the pulse width of 11 / 16
-    1 0 0 0 - 1 0 1	Set the pulse width of 12 / 16
-    1 0 0 0 - 1 1 0	Set the pulse width of 13 / 16
-    1 0 0 0 - 1 1 1	Set the pulse width of 14 / 16
-    1 0 0 0 0 - - -	Display off
-    1 0 0 0 1 - - -	Display on
+    1 0 0 0 - 0 0 0    Set the pulse width of 1 / 16
+    1 0 0 0 - 0 0 1    Set the pulse width of 2 / 16
+    1 0 0 0 - 0 1 0    Set the pulse width of 4 / 16
+    1 0 0 0 - 0 1 1    Set the pulse width of 10 / 16
+    1 0 0 0 - 1 0 0    Set the pulse width of 11 / 16
+    1 0 0 0 - 1 0 1    Set the pulse width of 12 / 16
+    1 0 0 0 - 1 1 0    Set the pulse width of 13 / 16
+    1 0 0 0 - 1 1 1    Set the pulse width of 14 / 16
+    1 0 0 0 0 - - -    Display off
+    1 0 0 0 1 - - -    Display on
    \endverbatim
  */
 
@@ -79,13 +79,15 @@
 
 #include <Arduino.h>
 
-#define TM1638_WRITE_DISPLAY_ADDR_INC	  0x40 //!< Write address with auto increment
-#define TM1638_WRITE_DISPLAY_ADDR_FIX	  0x44 //!< Write fixed address
-#define TM1638_READ_KEYS				        0x42 //!< Address increment
+// Instructions
+#define TM1638_WRITE_DISPLAY_CTRL       0x80 //!< Display control address write
+#define TM1638_DISPLAY_ADDR             0xc0 //!< Display address
 
-#define TM1638_WRITE_DISPLAY_CTRL		    0x80 //!< Display control address write
+// Data instructions
+#define TM1638_WRITE_DATA               0x40 //!< Write data to register
+#define TM1638_READ_KEYS                0x42 //!< Read key-scan data
+#define TM1638_ADDRESS_FIXED            0x44 //!< Set fixed address
 
-#define TM1638_DISPLAY_ADDR						  0xc0 //!< Display address
 
 //! TM1638 class
 class TM1638
