@@ -32,28 +32,66 @@
 
 /*!
  * \brief TM1638 constructor
- * \param dioPin TM1638 DIO pin.
+ * \details
+ *      Easy to remember pin argument order: C-lock, D-ata, E-nable
  * \param sclPin TM1638 SCL pin.
+ * \param dioPin TM1638 DIO pin.
  * \param stbPin TM1638 STB pin.
  */
-TM1638::TM1638(uint8_t dioPin, uint8_t sclPin, uint8_t stbPin) :
-    _dioPin(dioPin), _clkPin(sclPin), _stbPin(stbPin), _displayOn(true), _brightness(5)
+TM1638::TM1638(uint8_t clkPin, uint8_t dioPin, uint8_t stbPin) :
+    _displayOn(true), _brightness(5)
+{
+#ifdef __AVR
+    // Calculate bit and port register for fast pin read and writes (AVR targets only)
+    _clkPort = digitalPinToPort(clkPin);
+    _dioPort = digitalPinToPort(dioPin);
+    _stbPort = digitalPinToPort(stbPin);
+
+    _clkBit = digitalPinToBitMask(clkPin);
+    _dioBit = digitalPinToBitMask(dioPin);
+    _stbBit = digitalPinToBitMask(stbPin);
+#else
+    // Use the slow digitalRead() and digitalWrite() functions for non-AVR targets
+    _dioPin = dioPin;
+    _clkPin = clkPin;
+    _stbPin = stbPin;
+#endif
+}
+
+/*!
+ * \brief Initialize controller.
+ */
+void TM1638::begin()
 {
     // Initialize pins
-    digitalWrite(_stbPin, HIGH);
-    digitalWrite(_dioPin, LOW);
-    digitalWrite(_clkPin, LOW);
+    TM1638_STB_HIGH();
+    TM1638_DIO_LOW();
+    TM1638_CLK_LOW();
 
     // Set pin mode
-    pinMode(_dioPin, OUTPUT);
-    pinMode(_clkPin, OUTPUT);
-    pinMode(_stbPin, OUTPUT);
-
-    // Clear display
-    clear();
+    TM1638_DIO_OUTPUT();
+    TM1638_CLK_OUTPUT();
+    TM1638_STB_OUTPUT();
 
     // Write _displayOn and _brightness to display control register
     writeDisplayControl();
+
+    // Data write with auto address increment
+    writeCommand(TM1638_CMD_DATA | TM1638_DATA_WRITE | TM1638_DATA_AUTO_INC_ADDR);
+}
+
+/*!
+ * \brief Disable pins.
+ */
+void TM1638::end()
+{
+    TM1638_DIO_INPUT();
+    TM1638_CLK_INPUT();
+    TM1638_STB_INPUT();
+
+    TM1638_DIO_LOW();
+    TM1638_CLK_LOW();
+    TM1638_STB_LOW();
 }
 
 /*!
@@ -94,49 +132,13 @@ void TM1638::setBrightness(uint8_t brightness)
  */
 void TM1638::clear()
 {
-    writeCommand(TM1638_WRITE_DATA);
-
-    digitalWrite(_stbPin, LOW);
-
-    // Clear all display registers to turn all LED's off
-    writeByte(TM1638_DISPLAY_ADDR);
-    for (uint8_t i = 0; i < 16; i++) {
-        writeByte(0);
+    // Write buffer to display registers
+    TM1638_STB_LOW();
+    writeByte((uint8_t)(TM1638_CMD_ADDR | 0x00));
+    for (uint8_t i = 0; i < TM1638_NUM_GRIDS; i++) {
+        writeByte(0x00);
     }
-
-    digitalWrite(_stbPin, HIGH);
-}
-
-/*!
- * \brief Get key states.
- * \return One or more buttons. One bit per button.
- */
-uint32_t TM1638::getKeyScan()
-{
-    uint32_t keys = 0;
-
-    digitalWrite(_stbPin, LOW);
-
-    // Read 4 key-scan registers
-    writeByte(TM1638_READ_KEYS);
-    for (uint8_t i = 0; i < 4; i++) {
-        keys |= ((uint32_t)readByte() << (i * 8));
-    }
-
-    digitalWrite(_stbPin, HIGH);
-
-    return keys;
-}
-
-/*!
- * \brief Write display control.
- */
-void TM1638::writeDisplayControl()
-{
-    // Write to display control register
-    writeCommand(TM1638_WRITE_DISPLAY_CTRL |
-                 (_displayOn ? 0x08 : 0x00) |
-                 _brightness);
+    TM1638_STB_HIGH();
 }
 
 /*!
@@ -144,31 +146,100 @@ void TM1638::writeDisplayControl()
  * \param address Display address 0x00..0x0F
  * \param data Value 0x00..0xFF
  */
-void TM1638::writeDisplayRegister(uint8_t address, uint8_t data)
+void TM1638::writeData(uint8_t address, uint8_t data)
 {
-    if (address <= 0x0F) {
-        // Disable auto address increment
-        writeCommand(TM1638_ADDRESS_FIXED);
-
-        // Write to display register
-        digitalWrite(_stbPin, LOW);
-        writeByte(TM1638_DISPLAY_ADDR | address);
+    if (address <= TM1638_NUM_GRIDS) {
+        // Write byte to display register
+        TM1638_STB_LOW();
+        writeByte((uint8_t)(TM1638_CMD_ADDR | address));
         writeByte(data);
-        digitalWrite(_stbPin, HIGH);
+        TM1638_STB_HIGH();
     }
 }
 
 /*!
- * \brief Write command.
- * \param cmd Please refer to the datasheet for a list with supported commands.
+ * \brief Write buffer to multiple display registers
+ * \details
+ *    Write buffer to TM1638 with auto address increment
+ * \param address
+ *    Display address 0x00..0x0F
+ * \param buf
+ *    Buffer
+ * \param len
+ *    Buffer length
+ */
+void TM1638::writeData(uint8_t address, const uint8_t *buf, uint8_t len)
+{
+    if ((address + len) <= TM1638_NUM_GRIDS) {
+        // Write buffer to display registers
+        TM1638_STB_LOW();
+        writeByte((uint8_t)(TM1638_CMD_ADDR | address));
+        for (uint8_t i = 0; i < len; i++) {
+            writeByte(buf[i]);
+        }
+        TM1638_STB_HIGH();
+    }
+}
+
+/*!
+ * \brief Get key states.
+ * \return One or more buttons. One bit per button.
+ */
+uint32_t TM1638::getKeys()
+{
+    uint32_t keys = 0;
+
+    // Read 4 Bytes key-scan registers
+    TM1638_STB_LOW();
+    writeByte(TM1638_CMD_DATA | TM1638_DATA_READ_KEYS);
+    for (uint8_t i = 0; i < 4; i++) {
+        keys |= ((uint32_t)readByte() << (i * 8));
+    }
+    TM1638_STB_HIGH();
+
+    return keys;
+}
+
+// -------------------------------------------------------------------------------------------------
+/*!
+ * \brief Write display control register.
+ * \details
+ *      Set brightness and display on/off
+ */
+void TM1638::writeDisplayControl()
+{
+    writeCommand((uint8_t)(TM1638_CMD_CTRL |
+                           (_displayOn ? TM1638_CTRL_DISPLAY_ON : TM1638_CTRL_DISPLAY_OFF) |
+                           _brightness));
+}
+
+/*!
+ * \brief Write command to TM1638.
  */
 void TM1638::writeCommand(uint8_t cmd)
 {
-    // Write command
-    digitalWrite(_stbPin, LOW);
+    TM1638_STB_LOW();
     writeByte(cmd);
-    digitalWrite(_stbPin, HIGH);
-    delayMicroseconds(1);
+    TM1638_STB_HIGH();
+}
+
+/*!
+ * \brief Write byte to TM1638.
+ * \param data 8-bit value.
+ */
+void TM1638::writeByte(uint8_t data)
+{
+    for (uint8_t i = 0; i < 8; i++) {
+        TM1638_CLK_LOW();
+        TM1638_PIN_DELAY();
+        if (data & (1 << i)) {
+            TM1638_DIO_HIGH();
+        } else {
+            TM1638_DIO_LOW();
+        }
+        TM1638_CLK_HIGH();
+        TM1638_PIN_DELAY();
+    }
 }
 
 /*!
@@ -179,43 +250,17 @@ uint8_t TM1638::readByte()
 {
     uint8_t data = 0;
 
-    // Set DIO pin to input
-    digitalWrite(_dioPin, LOW);
-    pinMode(_dioPin, INPUT);
-
-    // Read 8-bit
+    TM1638_DIO_INPUT();
     for (uint8_t i = 0; i < 8; i++) {
-        digitalWrite(_clkPin, LOW);
-        delayMicroseconds(1);
-        if (digitalRead(_dioPin)) {
+        TM1638_CLK_LOW();
+        TM1638_PIN_DELAY();
+        if (TM1638_DIO_READ()) {
             data |= (1 << i);
         }
-        digitalWrite(_clkPin, HIGH);
+        TM1638_CLK_HIGH();
+        TM1638_PIN_DELAY();
     }
-
-    // Restore DIO pin to output
-    pinMode(_dioPin, OUTPUT);
+    TM1638_DIO_OUTPUT();
 
     return data;
-}
-
-/*!
- * \brief Write byte to TM1638.
- * \param data 8-bit value.
- */
-void TM1638::writeByte(uint8_t data)
-{
-    // Write 8-bit
-    for (uint8_t i = 0; i < 8; i++) {
-        digitalWrite(_clkPin, LOW);
-
-        if (data & (1 << i)) {
-            digitalWrite(_dioPin, HIGH);
-        } else {
-            digitalWrite(_dioPin, LOW);
-        }
-
-        digitalWrite(_clkPin, HIGH);
-        delayMicroseconds(1);
-    }
 }

@@ -79,42 +79,113 @@
 
 #include <Arduino.h>
 
-// Instructions
-#define TM1638_WRITE_DISPLAY_CTRL       0x80 //!< Display control address write
-#define TM1638_DISPLAY_ADDR             0xc0 //!< Display address
+// Commands
+#define TM1638_CMD_DATA                 0x40 //!< Display data command
+#define TM1638_CMD_CTRL                 0x80 //!< Display control command
+#define TM1638_CMD_ADDR                 0xc0 //!< Display address command
 
-// Data instructions
-#define TM1638_WRITE_DATA               0x40 //!< Write data to register
-#define TM1638_READ_KEYS                0x42 //!< Read key-scan data
-#define TM1638_ADDRESS_FIXED            0x44 //!< Set fixed address
+// Data command bits
+#define TM1638_DATA_WRITE	            0x00 //!< Write data
+#define TM1638_DATA_READ_KEYS           0x02 //!< Read keys
+#define TM1638_DATA_AUTO_INC_ADDR       0x00 //!< Auto increment address
+#define TM1638_DATA_FIXED_ADDR	        0x04 //!< Fixed address
 
+// Control command bits
+#define TM1638_CTRL_PULSE_1_16          0x00 //!< Pulse width 1/16
+#define TM1638_CTRL_PULSE_2_16          0x01 //!< Pulse width 2/16
+#define TM1638_CTRL_PULSE_4_16          0x02 //!< Pulse width 4/16
+#define TM1638_CTRL_PULSE_10_16         0x03 //!< Pulse width 10/16
+#define TM1638_CTRL_PULSE_11_16         0x04 //!< Pulse width 11/16
+#define TM1638_CTRL_PULSE_12_16         0x05 //!< Pulse width 12/16
+#define TM1638_CTRL_PULSE_13_16         0x06 //!< Pulse width 13/16
+#define TM1638_CTRL_PULSE_14_16         0x07 //!< Pulse width 14/16
+#define TM1638_CTRL_DISPLAY_OFF         0x00 //!< Display off
+#define TM1638_CTRL_DISPLAY_ON          0x08 //!< Display on
+
+//!< Pin defines
+#define TM1638_NUM_GRIDS                16 //!< Number of grid registers
+
+#ifdef __AVR
+#define TM1638_CLK_LOW()        { *portOutputRegister(_clkPort) &= ~_clkBit; }
+#define TM1638_CLK_HIGH()       { *portOutputRegister(_clkPort) |= _clkBit; }
+#define TM1638_CLK_INPUT()      { *portModeRegister(_clkPort) &= ~_clkBit; }
+#define TM1638_CLK_OUTPUT()     { *portModeRegister(_clkPort) |= _clkBit; }
+
+#define TM1638_DIO_LOW()        { *portOutputRegister(_dioPort) &= ~_dioBit; }
+#define TM1638_DIO_HIGH()       { *portOutputRegister(_dioPort) |= _dioBit; }
+#define TM1638_DIO_INPUT()      { *portModeRegister(_dioPort) &= ~_dioBit; }
+#define TM1638_DIO_OUTPUT()     { *portModeRegister(_dioPort) |= _dioBit; }
+#define TM1638_DIO_READ()       ( *portInputRegister(_dioPort) & _dioBit )
+
+#define TM1638_STB_LOW()        { *portOutputRegister(_stbPort) &= ~_stbBit; }
+#define TM1638_STB_HIGH()       { *portOutputRegister(_stbPort) |= _stbBit; }
+#define TM1638_STB_INPUT()      { *portModeRegister(_stbPort) &= ~_stbBit; }
+#define TM1638_STB_OUTPUT()     { *portModeRegister(_stbPort) |= _stbBit; }
+#else
+#define TM1638_CLK_LOW()        { digitalWrite(_clkPin, LOW); }
+#define TM1638_CLK_HIGH()       { digitalWrite(_clkPin, HIGH); }
+#define TM1638_CLK_INPUT()      { pinMode(_clkPin, INPUT); }
+#define TM1638_CLK_OUTPUT()     { pinMode(_clkPin, OUTPUT); }
+
+#define TM1638_DIO_LOW()        { digitalWrite(_dioPin, LOW); }
+#define TM1638_DIO_HIGH()       { digitalWrite(_dioPin, HIGH); }
+#define TM1638_DIO_INPUT()      { pinMode(_dioPin, INPUT); }
+#define TM1638_DIO_OUTPUT()     { pinMode(_dioPin, OUTPUT); }
+#define TM1638_DIO_READ()       ( digitalRead(_dioPin) )
+
+#define TM1638_STB_LOW()        { digitalWrite(_stbPin, LOW); }
+#define TM1638_STB_HIGH()       { digitalWrite(_stbPin, HIGH); }
+#define TM1638_STB_INPUT()      { pinMode(_stbPin, INPUT); }
+#define TM1638_STB_OUTPUT()     { pinMode(_stbPin, OUTPUT); }
+#endif
+
+//#define delayNanoseconds(__ns)  os_delay_cycles((double)(F_CPU) * ((double)__ns)/1.0e9 + 0.5)
+
+// Delay defines
+#if F_CPU >= 20000000UL
+#define TM1638_PIN_DELAY()      { delayMicroseconds(1); }
+#else
+#define TM1638_PIN_DELAY()
+#endif
 
 //! TM1638 class
 class TM1638
 {
 public:
-    TM1638(uint8_t dioPin, uint8_t sclPin, uint8_t stbPin);
+    TM1638(uint8_t clkPin, uint8_t dioPin, uint8_t stbPin);
 
+    virtual void begin();
+    virtual void end();
     virtual void displayOn();
     virtual void displayOff();
     virtual void setBrightness(uint8_t brightness);
     virtual void clear();
-    virtual uint32_t getKeyScan();
-    virtual void writeDisplayRegister(uint8_t address, uint8_t data);
+    virtual void writeData(uint8_t address, uint8_t data);
+    virtual void writeData(uint8_t address, const uint8_t *buf, uint8_t len);
+    virtual uint32_t getKeys();
 
 protected:
-    virtual void writeCommand(uint8_t cmd);
-    virtual void writeDisplayControl();
-    virtual uint8_t readByte();
-    virtual void writeByte(uint8_t data);
+#ifdef __AVR
+    uint8_t _clkPort;   //!< Clock port in IO pin register
+    uint8_t _dioPort;   //!< Data port in IO pin register
+    uint8_t _stbPort;   //!< Enable port in IO pin register
 
-private:
-    uint8_t _dioPin;
+    uint8_t _clkBit;    //!< Clock bit number in IO pin register
+    uint8_t _dioBit;    //!< Data bit number in IO pin register
+    uint8_t _stbBit;    //!< Enable bit number in IO pin register
+#else
     uint8_t _clkPin;
+    uint8_t _dioPin;
     uint8_t _stbPin;
+#endif
 
     bool    _displayOn;
     uint8_t _brightness;
+
+    virtual void writeDisplayControl();
+    virtual void writeCommand(uint8_t cmd);
+    virtual void writeByte(uint8_t data);
+    virtual uint8_t readByte();
 };
 
 #endif // TM1638_H__

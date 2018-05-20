@@ -30,61 +30,76 @@
 #include <TM1638.h>
 
 // Connect display pins to the Arduino DIGITAL pins
-#define DIO_PIN   2
-#define SCL_PIN   3
-#define STB_PIN   4
+#if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_NANO) || defined(ARDUINO_AVR_MICRO) || \
+    defined(ARDUINO_AVR_PRO) || defined(ARDUINO_AVR_MEGA2560) || defined(ARDUINO_AVR_LEONARDO)
+#define TM1638_SCL_PIN      2
+#define TM1638_DIO_PIN      3
+#define TM1638_STB0_PIN     4
+#elif defined(ARDUINO_ESP8266_WEMOS_D1MINI) || defined(ARDUINO_ESP8266_NODEMCU)
+#define TM1638_SCL_PIN      D2
+#define TM1638_DIO_PIN      D3
+#define TM1638_STB0_PIN     D4
+#elif defined(ARDUINO_LOLIN32)
+#define TM1638_SCL_PIN      0
+#define TM1638_DIO_PIN      4
+#define TM1638_STB0_PIN     5
+#else
+#error "May work, but not tested on this target"
+#endif
 
-TM1638 tm1638(DIO_PIN, SCL_PIN, STB_PIN);
+// Create tm1638 object
+TM1638 tm1638(TM1638_SCL_PIN, TM1638_DIO_PIN, TM1638_STB0_PIN);
 
-uint32_t keysLast = 0;
 
 void setup()
 {
-  Serial.begin(115200);
-  while (!Serial) {
-    ;
-  }
-  Serial.println(F("TM1638 example"));
+    Serial.begin(115200);
+    while (!Serial) {
+        ;
+    }
+    Serial.println(F("TM1638 example"));
 
-  // Turn display off (All LED's off)
-  tm1638.displayOff();
+    // Initialize TM1638
+    tm1638.begin();
 
-  // Set brightness 0..7
-  tm1638.setBrightness(3);
+    // Turn display off (All LED's off)
+    tm1638.displayOff();
 
-  // Turn display on
-  tm1638.displayOn();
+    // Clear display
+    tm1638.clear();
 
-  // Clear display
-  tm1638.clear();
+    // Set brightness 0..7
+    tm1638.setBrightness(3);
 
-  // Write segment LED's to the first display register
-  // The LED's turned on depends on the connection of your board
-  // Experiment with the registers 0x00..0x0F value 0x00..0xff to display
-  // numbers and characters
-  tm1638.writeDisplayRegister(0x01, 0x01);
+    // Turn display on
+    tm1638.displayOn();
+
+    // Write segment LED's to the first display registers 0x00..0x0F with value 0x00..0xff to
+    // display numbers and characters. Just an example which depends on the hardware:
+    tm1638.writeData(0x01, 0x01);
 }
 
 void loop()
 {
-  uint32_t keys;
+    static uint32_t keysLast = 0;
+    uint32_t keys;
 
-  // Read 32-bit keys
-  keys = tm1638.getKeyScan();
+    // Read 32-bit keys
+    keys = tm1638.getKeys();
 
-  // Check key down
-  if (keysLast != keys) {
-    keysLast = keys;
+    // Check key down
+    if (keysLast != keys) {
+        keysLast = keys;
 
-    Serial.print(F("Keys: 0x"));
-    Serial.println(keys, HEX);
+        Serial.print(F("Keys: 0x"));
+        Serial.println(keys, HEX);
 
-    if (keys) {
-      // Write segment LED's to first display register
-      tm1638.writeDisplayRegister(0, 0b00111111);
-    } else {
-      // Write segment LED's to first display register
-      tm1638.writeDisplayRegister(0, 0b00000110);
+        if (keys) {
+            // Write segment LED's to first display register
+            tm1638.writeData(0, 0b00111111);
+        } else {
+            // Write segment LED's to first display register
+            tm1638.writeData(0, 0b00000110);
+        }
     }
-  }
 }
