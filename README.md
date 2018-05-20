@@ -110,3 +110,25 @@ tm1638.writeData(0x00, buf, sizeof(buf));
 
 [TM1638 Datasheet](https://github.com/Erriez/ErriezTM1638/blob/master/extras/TM1638_datasheet.pdf)
 
+## Timing
+
+Output Benchmark example:
+
+| Board           |  CLK   | Read keys | Write Byte | Write 16 Bytes buffer | Clear display |
+| --------------- | :----: | :-------: | :--------: | :-------------------: | :-----------: |
+| Pro Mini 8MHz   | 65kHz  |   736us   |   312us    |        2448us         |    2224us     |
+| UNO 16MHz       | 125kHz |   340us   |   152us    |        1192us         |    1176us     |
+| Node MCU 80MHz  | 200kHz |   284us   |   116us    |         683us         |     682us     |
+| Node MCU 160MHz | 300kHz |   223us   |    66us    |         474us         |     469us     |
+
+#### Arduino UNO 16MHz
+
+![TM1638 Arduino UNO 16MHz timing](https://raw.githubusercontent.com/Erriez/ErriezTM1638/master/extras/TM1638_timing_Arduino_UNO_16MHz.png)
+
+#### WeMos D1 & R2 80MHz
+
+![TM1638 WeMos D1 & R2 40MHz timing](https://raw.githubusercontent.com/Erriez/ErriezTM1638/master/extras/TM1638_timing_WeMos_D1_R2_80MHz.png)
+
+#### WeMos D1 & R2 160MHz
+
+![TM1638 WeMos D1 & R2 160MHz timing](https://raw.githubusercontent.com/Erriez/ErriezTM1638/master/extras/TM1638_timing_WeMos_D1_R2_160MHz.png)
