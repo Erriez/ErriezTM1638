@@ -69,7 +69,7 @@ void setup()
     while (!Serial) {
         ;
     }
-    Serial.println(F("JY-LKM1638 benchmark example"));
+    Serial.println(F("TM1638 benchmark example"));
 
     // Initialize TM1638
     tm1638.begin();
