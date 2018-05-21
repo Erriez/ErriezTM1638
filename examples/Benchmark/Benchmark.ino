@@ -22,12 +22,13 @@
  * SOFTWARE.
  */
 
-/* JY-LKM1638 board v1.1 temperature example
- *
- * Required libraries:
- *   https://github.com/Erriez/ErriezTM1638
- *   https://github.com/Erriez/ErriezLKM1638
- *   https://github.com/Erriez/ErriezTimestamp
+/*!
+ * \file Benchmark.ino
+ * \brief TM1638 benchmark example
+ * \details
+ *    Required libraries:
+ *       https://github.com/Erriez/ErriezTM1638
+ *       https://github.com/Erriez/ErriezTimestamp
  */
 
 #include <Arduino.h>

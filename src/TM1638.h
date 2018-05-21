@@ -42,7 +42,7 @@
    MSB           LSB
     7 6 5 4 3 2 1 0
    -----------------
-    0 1 0 0 0 - 0 0  Write display data
+    0 1 0 0 0 - 0 0    Write display data
     0 1 0 0 0 - 1 0    Read key scan data
     0 1 0 0 0 0 - -    Auto address increment
     0 1 0 0 0 1 - -    Fixed address
@@ -103,7 +103,7 @@
 #define TM1638_CTRL_DISPLAY_ON          0x08 //!< Display on
 
 //!< Pin defines
-#define TM1638_NUM_GRIDS                16 //!< Number of grid registers
+#define TM1638_NUM_GRIDS                16   //!< Number of grid registers
 
 #ifdef __AVR
 #define TM1638_CLK_LOW()        { *portOutputRegister(_clkPort) &= ~_clkBit; }  //!< CLK pin low
@@ -152,7 +152,8 @@
 class TM1638
 {
 public:
-    TM1638(uint8_t clkPin, uint8_t dioPin, uint8_t stbPin);
+    TM1638(uint8_t clkPin, uint8_t dioPin, uint8_t stbPin,
+           bool displayOn=true, uint8_t brightness=5);
 
     virtual void begin();
     virtual void end();

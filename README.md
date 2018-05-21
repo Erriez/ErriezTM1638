@@ -1,7 +1,7 @@
 # Optimized TM1638 library for Arduino
 [![Build Status](https://travis-ci.org/Erriez/ErriezTM1638.svg?branch=master)](https://travis-ci.org/Erriez/ErriezTM1638)
 
-This is a 3-pin serial TM1638 chip library for Arduino, optimized for size and speed. It supports a combined LED driver controller and key-scan interface.
+This is a 3-pin serial TM1638 chip library for Arduino, optimized for size and speed. It supports a combined LED driver controller and key-scan interface to detect multiple key presses at the same time.
 
 ![TM1638 chip](https://raw.githubusercontent.com/Erriez/ErriezTM1638/master/extras/TM1638_pins.jpg)
 
@@ -23,13 +23,13 @@ The following TM1638 pins should be connected to LED's and buttons in a matrix:
 
 ### Pins
 
-| Pin  | TM1638 | Arduino UNO / Nano / Pro Micro / Mega2560 / Leonardo | Node MCU | LOLIN32 |
-| :--: | :----: | :--------------------------------------------------: | :------: | :-----: |
-|  1   |  VCC   |                     5V (or 3.3V)                     |   GND    |   GND   |
-|  2   |  GND   |                         GND                          |   3V3    |   3V3   |
-|  3   |  CLK   |                   2 (Digital pin)                    |    D2    |    0    |
-|  4   |  DIO   |                   3 (Digital pin)                    |    D3    |    4    |
-|  5   |  STB0  |                   4 (Digital pin)                    |    D4    |    5    |
+| Pin  | TM1638 | Arduino UNO / Nano / Pro Micro / Mega2560 / Leonardo | WeMos D1 & R2 / Node MCU | WeMos LOLIN32 |
+| :--: | :----: | :--------------------------------------------------: | :----------------------: | :-----------: |
+|  1   |  VCC   |                     5V (or 3.3V)                     |           GND            |      GND      |
+|  2   |  GND   |                         GND                          |           3V3            |      3V3      |
+|  3   |  CLK   |                   2 (Digital pin)                    |            D2            |       0       |
+|  4   |  DIO   |                   3 (Digital pin)                    |            D3            |       4       |
+|  5   |  STB0  |                   4 (Digital pin)                    |            D4            |       5       |
 
 * Check maximum regulator / diode current to prevent a burnout when using lots of LED's. Some boards can provide only 100mA, others 800mA max.
 
@@ -47,12 +47,12 @@ The following TM1638 pins should be connected to LED's and buttons in a matrix:
 #include "TM1638.h"
   
 // Connect display pins to the Arduino DIGITAL pins
-#define TM1638_SCL_PIN   2
+#define TM1638_CLK_PIN   2
 #define TM1638_DIO_PIN   3
-#define TM1638_STB0_PIN  4
+#define TM1638_STB_PIN   4
 
 // Create tm1638 object
-TM1638 tm1638(TM1638_SCL_PIN, TM1638_DIO_PIN, TM1638_STB0_PIN);
+TM1638 tm1638(TM1638_CLK_PIN, TM1638_DIO_PIN, TM1638_STB_PIN);
 
 void setup()
 {

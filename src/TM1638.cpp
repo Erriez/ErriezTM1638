@@ -33,13 +33,13 @@
 /*!
  * \brief TM1638 constructor
  * \details
- *      Easy to remember pin argument order: C-lock, D-ata, E-nable
- * \param clkPin TM1638 SCL pin.
+ *      Constructor with pin arguments: C-D-E (Clock, Data, Enable)
+ * \param clkPin TM1638 CLK pin.
  * \param dioPin TM1638 DIO pin.
  * \param stbPin TM1638 STB pin.
  */
-TM1638::TM1638(uint8_t clkPin, uint8_t dioPin, uint8_t stbPin) :
-    _displayOn(true), _brightness(5)
+TM1638::TM1638(uint8_t clkPin, uint8_t dioPin, uint8_t stbPin, bool displayOn, uint8_t brightness) :
+    _displayOn(displayOn), _brightness(brightness & 0x07)
 {
 #ifdef __AVR
     // Calculate bit and port register for fast pin read and writes (AVR targets only)
@@ -59,7 +59,7 @@ TM1638::TM1638(uint8_t clkPin, uint8_t dioPin, uint8_t stbPin) :
 }
 
 /*!
- * \brief Initialize controller.
+ * \brief Initialize TM1638 controller.
  */
 void TM1638::begin()
 {
@@ -117,6 +117,7 @@ void TM1638::displayOff()
 /*!
  * \brief Set brightness LED's.
  * \param brightness
+ *    Display brightness value 0..7
  */
 void TM1638::setBrightness(uint8_t brightness)
 {
@@ -128,11 +129,10 @@ void TM1638::setBrightness(uint8_t brightness)
 }
 
 /*!
- * Turn all LED's off.
+ * \brief Turn all LED's off.
  */
 void TM1638::clear()
 {
-    // Write buffer to display registers
     TM1638_STB_LOW();
     writeByte((uint8_t)(TM1638_CMD_ADDR | 0x00));
     for (uint8_t i = 0; i < TM1638_NUM_GRIDS; i++) {

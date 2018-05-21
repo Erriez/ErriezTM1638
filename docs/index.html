@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a href="https://travis-ci.org/Erriez/ErriezTM1638"></a></p>
-<p>This is a 3-pin serial <a class="el" href="class_t_m1638.html" title="TM1638 class. ">TM1638</a> chip library for Arduino, optimized for size and speed. It supports a combined LED driver controller and key-scan interface.</p>
+<p>This is a 3-pin serial <a class="el" href="class_t_m1638.html" title="TM1638 class. ">TM1638</a> chip library for Arduino, optimized for size and speed. It supports a combined LED driver controller and key-scan interface to detect multiple key presses at the same time.</p>
 <div class="image">
 <img src="https://raw.githubusercontent.com/Erriez/ErriezTM1638/master/extras/TM1638_pins.jpg" alt="TM1638 chip"/>
 </div>
@@ -89,7 +89,7 @@ $(function() {
 <h3>Pins</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadCenter">Pin  </th><th class="markdownTableHeadCenter"><a class="el" href="class_t_m1638.html" title="TM1638 class. ">TM1638</a>  </th><th class="markdownTableHeadCenter">Arduino UNO / Nano / Pro Micro / Mega2560 / Leonardo  </th><th class="markdownTableHeadCenter">Node MCU  </th><th class="markdownTableHeadCenter">LOLIN32   </th></tr>
+<th class="markdownTableHeadCenter">Pin  </th><th class="markdownTableHeadCenter"><a class="el" href="class_t_m1638.html" title="TM1638 class. ">TM1638</a>  </th><th class="markdownTableHeadCenter">Arduino UNO / Nano / Pro Micro / Mega2560 / Leonardo  </th><th class="markdownTableHeadCenter">WeMos D1 &amp; R2 / Node MCU  </th><th class="markdownTableHeadCenter">WeMos LOLIN32   </th></tr>
 <tr class="markdownTableBody" class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter">1  </td><td class="markdownTableBodyCenter">VCC  </td><td class="markdownTableBodyCenter">5V (or 3.3V)  </td><td class="markdownTableBodyCenter">GND  </td><td class="markdownTableBodyCenter">GND   </td></tr>
 <tr class="markdownTableBody" class="markdownTableRowEven">
@@ -110,7 +110,7 @@ $(function() {
 </ul>
 <h2>Usage</h2>
 <p><b>Initialization</b></p>
-<div class="fragment"><div class="line">{c++}</div><div class="line">// Include TM1638 library</div><div class="line">#include &quot;TM1638.h&quot;</div><div class="line"></div><div class="line">// Connect display pins to the Arduino DIGITAL pins</div><div class="line">#define TM1638_SCL_PIN   2</div><div class="line">#define TM1638_DIO_PIN   3</div><div class="line">#define TM1638_STB0_PIN  4</div><div class="line"></div><div class="line">// Create tm1638 object</div><div class="line">TM1638 tm1638(TM1638_SCL_PIN, TM1638_DIO_PIN, TM1638_STB0_PIN);</div><div class="line"></div><div class="line">void setup()</div><div class="line">{</div><div class="line">    // Initialize TM1638</div><div class="line">    tm1638.begin();</div><div class="line">}</div></div><!-- fragment --><p><b>Display on/off</b></p>
+<div class="fragment"><div class="line">{c++}</div><div class="line">// Include TM1638 library</div><div class="line">#include &quot;TM1638.h&quot;</div><div class="line"></div><div class="line">// Connect display pins to the Arduino DIGITAL pins</div><div class="line">#define TM1638_CLK_PIN   2</div><div class="line">#define TM1638_DIO_PIN   3</div><div class="line">#define TM1638_STB_PIN   4</div><div class="line"></div><div class="line">// Create tm1638 object</div><div class="line">TM1638 tm1638(TM1638_CLK_PIN, TM1638_DIO_PIN, TM1638_STB_PIN);</div><div class="line"></div><div class="line">void setup()</div><div class="line">{</div><div class="line">    // Initialize TM1638</div><div class="line">    tm1638.begin();</div><div class="line">}</div></div><!-- fragment --><p><b>Display on/off</b></p>
 <div class="fragment"><div class="line">{c++}</div><div class="line">// Turn display off</div><div class="line">tm1638.displayOff();</div><div class="line"></div><div class="line">// Turn display on</div><div class="line">tm1638.displayOn();</div></div><!-- fragment --><p><b>Turn all LED's off</b></p>
 <div class="fragment"><div class="line">{c++}</div><div class="line">// Turn all LED&#39;s off</div><div class="line">tm1638.clear();</div></div><!-- fragment --><p><b>Get keys</b></p>
 <div class="fragment"><div class="line">{c++}</div><div class="line">// Get 32-bit key-scan</div><div class="line">uint32_t keys = tm1638.getKeys();</div></div><!-- fragment --><p><b>Write Byte to display register</b></p>
