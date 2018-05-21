@@ -30,12 +30,11 @@
 #include <TM1638.h>
 
 // Connect display pins to the Arduino DIGITAL pins
-#if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_NANO) || defined(ARDUINO_AVR_MICRO) || \
-    defined(ARDUINO_AVR_PRO) || defined(ARDUINO_AVR_MEGA2560) || defined(ARDUINO_AVR_LEONARDO)
+#if defined(ARDUINO_ARCH_AVR)
 #define TM1638_SCL_PIN      2
 #define TM1638_DIO_PIN      3
 #define TM1638_STB0_PIN     4
-#elif defined(ARDUINO_ESP8266_WEMOS_D1MINI) || defined(ARDUINO_ESP8266_NODEMCU)
+#elif defined(ARDUINO_ESP8266_WEMOS_D1MINI) || defined(ESP8266_WEMOS_D1MINI) || defined(ARDUINO_ESP8266_NODEMCU)
 #define TM1638_SCL_PIN      D2
 #define TM1638_DIO_PIN      D3
 #define TM1638_STB0_PIN     D4
