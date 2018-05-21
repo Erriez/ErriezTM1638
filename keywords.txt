@@ -12,12 +12,14 @@ tm1638		KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
+begin			KEYWORD2
+end				KEYWORD2
 displayOn		KEYWORD2
 displayOff		KEYWORD2
 setBrightness	KEYWORD2
 clear			KEYWORD2
-getKeyScan		KEYWORD2
-writeDisplayRegister	KEYWORD2
+writeDate		KEYWORD2
+getKeys			KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
