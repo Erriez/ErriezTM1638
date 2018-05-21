@@ -32,7 +32,7 @@
 
 #include <Arduino.h>
 
-#include <LKM1638Board.h>
+#include <TM1638.h>
 #include <Timestamp.h>
 
 // Connect display pins to the Arduino DIGITAL pins
