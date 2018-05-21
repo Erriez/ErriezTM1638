@@ -102,24 +102,26 @@ uint8_t buf[] = { 0b10000110, 0b00111111, 0b00111111, 0b00111111, 0b00111111, 0b
 tm1638.writeData(0x00, buf, sizeof(buf));
 ```
 
-## Library dependencies
+## Small footprint
 
-- None
+Measured with Arduino IDE v1.8.5 without any other peripherals, calling all library functions once:
 
-## Documentation
+| Board       | MCU flash size | MCU RAM size | TM1638 library flash | TM1638 library RAM |
+| ----------- | :------------: | :----------: | :------------------: | :----------------: |
+| Arduino UNO |      32kB      |    2048kB    |      1840 Bytes      |      40 Bytes      |
 
-[TM1638 Datasheet](https://github.com/Erriez/ErriezTM1638/blob/master/extras/TM1638_datasheet.pdf)
+## Optimized timing
 
-## Timing
+The library uses optimized pin control for AVR targets. Other targets uses the default digitalRead() and digitalWrite() pin control functions.
 
-Output Benchmark example:
+Output [Benchmark](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Benchmark/Benchmark.ino) example:
 
-| Board           |  CLK   | Read keys | Write Byte | Write 16 Bytes buffer | Clear display |
-| --------------- | :----: | :-------: | :--------: | :-------------------: | :-----------: |
-| Pro Mini 8MHz   | 65kHz  |   736us   |   312us    |        2448us         |    2224us     |
-| UNO 16MHz       | 125kHz |   340us   |   152us    |        1192us         |    1176us     |
-| Node MCU 80MHz  | 200kHz |   284us   |   116us    |         683us         |     682us     |
-| Node MCU 160MHz | 300kHz |   223us   |    66us    |         474us         |     469us     |
+| Board                |  CLK   | Read keys | Write Byte | Write 16 Bytes buffer | Clear display |
+| -------------------- | :----: | :-------: | :--------: | :-------------------: | :-----------: |
+| Pro Mini 8MHz        | 65kHz  |   736us   |   312us    |        2448us         |    2224us     |
+| UNO 16MHz            | 125kHz |   340us   |   152us    |        1192us         |    1176us     |
+| WeMos D1 & R2 80MHz  | 200kHz |   284us   |   116us    |         683us         |     682us     |
+| WeMos D1 & R2 160MHz | 300kHz |   223us   |    66us    |         474us         |     469us     |
 
 #### Arduino UNO 16MHz
 
