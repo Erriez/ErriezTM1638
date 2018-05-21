@@ -18,7 +18,7 @@ displayOn		KEYWORD2
 displayOff		KEYWORD2
 setBrightness	KEYWORD2
 clear			KEYWORD2
-writeDate		KEYWORD2
+writeData		KEYWORD2
 getKeys			KEYWORD2
 
 #######################################
