@@ -22,7 +22,7 @@ The following TM1638 pins should be connected to LED's and buttons in a matrix:
 
 ### Pins
 
-| Pin  | TM1638 | Arduino UNO / Nano / Mega2560 / Leonardo / Pro Micro | Node MCU | LOLIN32 |
+| Pin  | TM1638 | Arduino UNO / Nano / Pro Micro / Mega2560 / Leonardo | Node MCU | LOLIN32 |
 | :--: | :----: | :--------------------------------------------------: | :------: | :-----: |
 |  1   |  VCC   |                     5V (or 3.3V)                     |   GND    |   GND   |
 |  2   |  GND   |                         GND                          |   3V3    |   3V3   |
@@ -35,7 +35,7 @@ The following TM1638 pins should be connected to LED's and buttons in a matrix:
 
 ## Example
 
-Examples | TM1638 | [Example](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Example/Example.ino)
+* Examples | Erriez TM1638 | [Example](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Example/Example.ino)
 
 ## Usage
 
@@ -132,3 +132,17 @@ Output Benchmark example:
 #### WeMos D1 & R2 160MHz
 
 ![TM1638 WeMos D1 & R2 160MHz timing](https://raw.githubusercontent.com/Erriez/ErriezTM1638/master/extras/TM1638_timing_WeMos_D1_R2_160MHz.png)
+
+## Library dependencies
+
+- The [Benchmark](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Benchmark/Benchmark.ino) example uses [Erriez Timestamp](https://github.com/Erriez/ErriezTimestamp) library.
+
+## Documentation
+
+- [Doxygen online HTML](https://Erriez.github.io/ErriezTM1638)
+- [Doxygen PDF](https://github.com/Erriez/ErriezTM1638/raw/master/docs/latex/refman.pdf)
+- [TM1638 Datasheet](https://github.com/Erriez/ErriezTM1638/blob/master/extras/TM1638_datasheet.pdf)
+
+## Library installation
+
+Please refer to the [Wiki](https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki) page.

@@ -23,9 +23,9 @@
  */
 
 /*!
+ * \file TM1638.cpp
  * \brief TM1638 library for Arduino
  * \details Source: https://github.com/Erriez/ErriezTM1638
- * \file TM1638.cpp
  */
 
 #include "TM1638.h"
@@ -34,7 +34,7 @@
  * \brief TM1638 constructor
  * \details
  *      Easy to remember pin argument order: C-lock, D-ata, E-nable
- * \param sclPin TM1638 SCL pin.
+ * \param clkPin TM1638 SCL pin.
  * \param dioPin TM1638 DIO pin.
  * \param stbPin TM1638 STB pin.
  */

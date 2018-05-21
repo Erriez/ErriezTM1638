@@ -23,9 +23,9 @@
  */
 
 /*!
+ * \file TM1638.h
  * \brief TM1638 library for Arduino
  * \details Source: https://github.com/Erriez/ErriezTM1638
- * \file TM1638.h
  * \verbatim
    Command / register definitions
 
@@ -106,49 +106,49 @@
 #define TM1638_NUM_GRIDS                16 //!< Number of grid registers
 
 #ifdef __AVR
-#define TM1638_CLK_LOW()        { *portOutputRegister(_clkPort) &= ~_clkBit; }
-#define TM1638_CLK_HIGH()       { *portOutputRegister(_clkPort) |= _clkBit; }
-#define TM1638_CLK_INPUT()      { *portModeRegister(_clkPort) &= ~_clkBit; }
-#define TM1638_CLK_OUTPUT()     { *portModeRegister(_clkPort) |= _clkBit; }
+#define TM1638_CLK_LOW()        { *portOutputRegister(_clkPort) &= ~_clkBit; }  //!< CLK pin low
+#define TM1638_CLK_HIGH()       { *portOutputRegister(_clkPort) |= _clkBit; }   //!< CLK pin high
+#define TM1638_CLK_INPUT()      { *portModeRegister(_clkPort) &= ~_clkBit; }    //!< CLK pin input
+#define TM1638_CLK_OUTPUT()     { *portModeRegister(_clkPort) |= _clkBit; }     //!< CLK pin output
 
-#define TM1638_DIO_LOW()        { *portOutputRegister(_dioPort) &= ~_dioBit; }
-#define TM1638_DIO_HIGH()       { *portOutputRegister(_dioPort) |= _dioBit; }
-#define TM1638_DIO_INPUT()      { *portModeRegister(_dioPort) &= ~_dioBit; }
-#define TM1638_DIO_OUTPUT()     { *portModeRegister(_dioPort) |= _dioBit; }
-#define TM1638_DIO_READ()       ( *portInputRegister(_dioPort) & _dioBit )
+#define TM1638_DIO_LOW()        { *portOutputRegister(_dioPort) &= ~_dioBit; }  //!< DIO pin low
+#define TM1638_DIO_HIGH()       { *portOutputRegister(_dioPort) |= _dioBit; }   //!< DIO pin high
+#define TM1638_DIO_INPUT()      { *portModeRegister(_dioPort) &= ~_dioBit; }    //!< DIO pin input
+#define TM1638_DIO_OUTPUT()     { *portModeRegister(_dioPort) |= _dioBit; }     //!< DIO pin output
+#define TM1638_DIO_READ()       ( *portInputRegister(_dioPort) & _dioBit )      //!< DIO pin read
 
-#define TM1638_STB_LOW()        { *portOutputRegister(_stbPort) &= ~_stbBit; }
-#define TM1638_STB_HIGH()       { *portOutputRegister(_stbPort) |= _stbBit; }
-#define TM1638_STB_INPUT()      { *portModeRegister(_stbPort) &= ~_stbBit; }
-#define TM1638_STB_OUTPUT()     { *portModeRegister(_stbPort) |= _stbBit; }
+#define TM1638_STB_LOW()        { *portOutputRegister(_stbPort) &= ~_stbBit; }  //!< STB pin low
+#define TM1638_STB_HIGH()       { *portOutputRegister(_stbPort) |= _stbBit; }   //!< STB pin high
+#define TM1638_STB_INPUT()      { *portModeRegister(_stbPort) &= ~_stbBit; }    //!< STB pin input
+#define TM1638_STB_OUTPUT()     { *portModeRegister(_stbPort) |= _stbBit; }     //!< STB pin output
 #else
-#define TM1638_CLK_LOW()        { digitalWrite(_clkPin, LOW); }
-#define TM1638_CLK_HIGH()       { digitalWrite(_clkPin, HIGH); }
-#define TM1638_CLK_INPUT()      { pinMode(_clkPin, INPUT); }
-#define TM1638_CLK_OUTPUT()     { pinMode(_clkPin, OUTPUT); }
+#define TM1638_CLK_LOW()        { digitalWrite(_clkPin, LOW); }     //!< CLK pin low
+#define TM1638_CLK_HIGH()       { digitalWrite(_clkPin, HIGH); }    //!< CLK pin high
+#define TM1638_CLK_INPUT()      { pinMode(_clkPin, INPUT); }        //!< CLK pin input
+#define TM1638_CLK_OUTPUT()     { pinMode(_clkPin, OUTPUT); }       //!< CLK pin output
 
-#define TM1638_DIO_LOW()        { digitalWrite(_dioPin, LOW); }
-#define TM1638_DIO_HIGH()       { digitalWrite(_dioPin, HIGH); }
-#define TM1638_DIO_INPUT()      { pinMode(_dioPin, INPUT); }
-#define TM1638_DIO_OUTPUT()     { pinMode(_dioPin, OUTPUT); }
-#define TM1638_DIO_READ()       ( digitalRead(_dioPin) )
+#define TM1638_DIO_LOW()        { digitalWrite(_dioPin, LOW); }     //!< DIO pin low
+#define TM1638_DIO_HIGH()       { digitalWrite(_dioPin, HIGH); }    //!< DIO pin high
+#define TM1638_DIO_INPUT()      { pinMode(_dioPin, INPUT); }        //!< DIO pin input
+#define TM1638_DIO_OUTPUT()     { pinMode(_dioPin, OUTPUT); }       //!< DIO pin output
+#define TM1638_DIO_READ()       ( digitalRead(_dioPin) )            //!< DIO pin read
 
-#define TM1638_STB_LOW()        { digitalWrite(_stbPin, LOW); }
-#define TM1638_STB_HIGH()       { digitalWrite(_stbPin, HIGH); }
-#define TM1638_STB_INPUT()      { pinMode(_stbPin, INPUT); }
-#define TM1638_STB_OUTPUT()     { pinMode(_stbPin, OUTPUT); }
+#define TM1638_STB_LOW()        { digitalWrite(_stbPin, LOW); }     //!< STB pin low
+#define TM1638_STB_HIGH()       { digitalWrite(_stbPin, HIGH); }    //!< STB pin high
+#define TM1638_STB_INPUT()      { pinMode(_stbPin, INPUT); }        //!< STB pin input
+#define TM1638_STB_OUTPUT()     { pinMode(_stbPin, OUTPUT); }       //!< STB pin output
 #endif
-
-//#define delayNanoseconds(__ns)  os_delay_cycles((double)(F_CPU) * ((double)__ns)/1.0e9 + 0.5)
 
 // Delay defines
 #if F_CPU >= 20000000UL
-#define TM1638_PIN_DELAY()      { delayMicroseconds(1); }
+#define TM1638_PIN_DELAY()      { delayMicroseconds(1); }           //!< Delay between pin changes
 #else
-#define TM1638_PIN_DELAY()
+#define TM1638_PIN_DELAY()                                          //!< Delay between pin changes
 #endif
 
-//! TM1638 class
+/*!
+ * \brief TM1638 class
+ */
 class TM1638
 {
 public:
@@ -174,13 +174,13 @@ protected:
     uint8_t _dioBit;    //!< Data bit number in IO pin register
     uint8_t _stbBit;    //!< Enable bit number in IO pin register
 #else
-    uint8_t _clkPin;
-    uint8_t _dioPin;
-    uint8_t _stbPin;
+    uint8_t _clkPin;    //!< Clock pin
+    uint8_t _dioPin;    //!< Data pin
+    uint8_t _stbPin;    //!< Enable pin
 #endif
 
-    bool    _displayOn;
-    uint8_t _brightness;
+    bool    _displayOn;  //!< Display on and off status for display control register
+    uint8_t _brightness; //!< Display brightness for display control register
 
     virtual void writeDisplayControl();
     virtual void writeCommand(uint8_t cmd);
