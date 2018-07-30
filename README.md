@@ -149,3 +149,7 @@ Output [Benchmark](https://github.com/Erriez/ErriezTM1638/blob/master/examples/B
 ## Library installation
 
 Please refer to the [Wiki](https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki) page.
+
+## Other Arduino Libraries and Sketches from Erriez
+
+* [Erriez Libraries and Sketches](https://github.com/Erriez/ErriezArduinoLibrariesAndSketches)
