@@ -7,6 +7,7 @@ This is a 3-pin serial TM1638 chip library for Arduino, optimized for size and s
 
 Displaying numbers, characters and reading keys depends on the hardware wiring and is not part of this library. A fully operational example for a board with 8 7-segment displays, 8 dual color LED's and 8 buttons which uses this library is available here: [JY-LKM1638](https://github.com/Erriez/ErriezLKM1638).
 
+
 ## Hardware
 
 Connect power and 3 data pins to an Arduino board DIGITAL pins:
@@ -37,6 +38,14 @@ The following TM1638 pins should be connected to LED's and buttons in a matrix:
 ## Example
 
 * Examples | Erriez TM1638 | [Example](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Example/Example.ino)
+
+
+## Documentation
+
+- [Doxygen online HTML](https://Erriez.github.io/ErriezTM1638)
+- [Doxygen PDF](https://github.com/Erriez/ErriezTM1638/raw/gh-pages/latex/ErriezTM1638.pdf)
+- [TM1638 Datasheet](https://github.com/Erriez/ErriezTM1638/blob/master/extras/TM1638_datasheet.pdf)
+
 
 ## Usage
 
@@ -140,15 +149,11 @@ Output [Benchmark](https://github.com/Erriez/ErriezTM1638/blob/master/examples/B
 
 - The [Benchmark](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Benchmark/Benchmark.ino) example uses [Erriez Timestamp](https://github.com/Erriez/ErriezTimestamp) library.
 
-## Documentation
-
-- [Doxygen online HTML](https://Erriez.github.io/ErriezTM1638)
-- [Doxygen PDF](https://github.com/Erriez/ErriezTM1638/raw/master/docs/latex/refman.pdf)
-- [TM1638 Datasheet](https://github.com/Erriez/ErriezTM1638/blob/master/extras/TM1638_datasheet.pdf)
 
 ## Library installation
 
 Please refer to the [Wiki](https://github.com/Erriez/ErriezArduinoLibrariesAndSketches/wiki) page.
+
 
 ## Other Arduino Libraries and Sketches from Erriez
 

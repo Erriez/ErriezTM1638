@@ -25,7 +25,9 @@
 /*!
  * \file TM1638.cpp
  * \brief TM1638 library for Arduino
- * \details Source: https://github.com/Erriez/ErriezTM1638
+ * \details
+ *      Source:         https://github.com/Erriez/ErriezTM1638
+ *      Documentation:  https://erriez.github.io/ErriezTM1638
  */
 
 #include "TM1638.h"
