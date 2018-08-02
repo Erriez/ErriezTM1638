@@ -1,0 +1,256 @@
+\hypertarget{class_t_m1638}{}\section{T\+M1638 Class Reference}
+\label{class_t_m1638}\index{T\+M1638@{T\+M1638}}
+
+
+\hyperlink{class_t_m1638}{T\+M1638} class.  
+
+
+
+
+{\ttfamily \#include $<$T\+M1638.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_t_m1638_af4c0f8d4f26e8cbe64bd9f46a8027127}{T\+M1638} (uint8\+\_\+t clk\+Pin, uint8\+\_\+t dio\+Pin, uint8\+\_\+t stb\+Pin, bool \hyperlink{class_t_m1638_a195aafa49dd926f283751d7ed16033aa}{display\+On}=true, uint8\+\_\+t brightness=5)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_t_m1638}{T\+M1638} constructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_a74b4db03225a215928946b2e6f5228dc}{begin} ()\hypertarget{class_t_m1638_a74b4db03225a215928946b2e6f5228dc}{}\label{class_t_m1638_a74b4db03225a215928946b2e6f5228dc}
+
+\begin{DoxyCompactList}\small\item\em Initialize \hyperlink{class_t_m1638}{T\+M1638} controller. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_a73fe114adcfbab4b786641d80b9c6d53}{end} ()\hypertarget{class_t_m1638_a73fe114adcfbab4b786641d80b9c6d53}{}\label{class_t_m1638_a73fe114adcfbab4b786641d80b9c6d53}
+
+\begin{DoxyCompactList}\small\item\em Disable pins. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_a195aafa49dd926f283751d7ed16033aa}{display\+On} ()\hypertarget{class_t_m1638_a195aafa49dd926f283751d7ed16033aa}{}\label{class_t_m1638_a195aafa49dd926f283751d7ed16033aa}
+
+\begin{DoxyCompactList}\small\item\em Turn Display on. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_a9b33cb60687956656fb84174d71c57d6}{display\+Off} ()\hypertarget{class_t_m1638_a9b33cb60687956656fb84174d71c57d6}{}\label{class_t_m1638_a9b33cb60687956656fb84174d71c57d6}
+
+\begin{DoxyCompactList}\small\item\em Turn display off. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_a8bb2b1073f8f4f43258fc8cabb8eb8a2}{set\+Brightness} (uint8\+\_\+t brightness)
+\begin{DoxyCompactList}\small\item\em Set brightness L\+ED\textquotesingle{}s. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_ad5e50b9e78c006e9a91782fbb4e4d636}{clear} ()\hypertarget{class_t_m1638_ad5e50b9e78c006e9a91782fbb4e4d636}{}\label{class_t_m1638_ad5e50b9e78c006e9a91782fbb4e4d636}
+
+\begin{DoxyCompactList}\small\item\em Turn all L\+ED\textquotesingle{}s off. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_a34dc8c06e3a863260aab1c61ddae875a}{write\+Data} (uint8\+\_\+t address, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Write display register. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_acff71225b60887fe9ab8c1aac2b45bf5}{write\+Data} (uint8\+\_\+t address, const uint8\+\_\+t $\ast$buf, uint8\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write buffer to multiple display registers. \end{DoxyCompactList}\item 
+virtual uint32\+\_\+t \hyperlink{class_t_m1638_a4a0058c130c0368a2651c7dbc5eaa5a0}{get\+Keys} ()
+\begin{DoxyCompactList}\small\item\em Get key states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_t_m1638_a2ad9cd6d6c86595868f2c44d61cb1385}{write\+Display\+Control} ()
+\begin{DoxyCompactList}\small\item\em Write display control register. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_af72e7da067ca94440bacae4b09337d63}{write\+Command} (uint8\+\_\+t cmd)\hypertarget{class_t_m1638_af72e7da067ca94440bacae4b09337d63}{}\label{class_t_m1638_af72e7da067ca94440bacae4b09337d63}
+
+\begin{DoxyCompactList}\small\item\em Write command to \hyperlink{class_t_m1638}{T\+M1638}. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_t_m1638_a77095cfe4540b143bdca42305c528b2f}{write\+Byte} (uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Write byte to \hyperlink{class_t_m1638}{T\+M1638}. \end{DoxyCompactList}\item 
+virtual uint8\+\_\+t \hyperlink{class_t_m1638_a77d2141b59a47d111a344b0b892a5b9c}{read\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Read byte from \hyperlink{class_t_m1638}{T\+M1638}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{class_t_m1638_ab4479c9c4104732b75d3dab088e9af85}{\+\_\+clk\+Pin}\hypertarget{class_t_m1638_ab4479c9c4104732b75d3dab088e9af85}{}\label{class_t_m1638_ab4479c9c4104732b75d3dab088e9af85}
+
+\begin{DoxyCompactList}\small\item\em Clock pin. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{class_t_m1638_a2bfb09b35261ee2b0721f62c3c881817}{\+\_\+dio\+Pin}\hypertarget{class_t_m1638_a2bfb09b35261ee2b0721f62c3c881817}{}\label{class_t_m1638_a2bfb09b35261ee2b0721f62c3c881817}
+
+\begin{DoxyCompactList}\small\item\em Data pin. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{class_t_m1638_a859e7cea7ffd158c13483cf98732c13f}{\+\_\+stb\+Pin}\hypertarget{class_t_m1638_a859e7cea7ffd158c13483cf98732c13f}{}\label{class_t_m1638_a859e7cea7ffd158c13483cf98732c13f}
+
+\begin{DoxyCompactList}\small\item\em Enable pin. \end{DoxyCompactList}\item 
+bool \hyperlink{class_t_m1638_a62ef809cfcb96e297b4acd1a09cc92e1}{\+\_\+display\+On}\hypertarget{class_t_m1638_a62ef809cfcb96e297b4acd1a09cc92e1}{}\label{class_t_m1638_a62ef809cfcb96e297b4acd1a09cc92e1}
+
+\begin{DoxyCompactList}\small\item\em Display on and off status for display control register. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{class_t_m1638_aad9c8000c101ae90b1f3426be7d168b0}{\+\_\+brightness}\hypertarget{class_t_m1638_aad9c8000c101ae90b1f3426be7d168b0}{}\label{class_t_m1638_aad9c8000c101ae90b1f3426be7d168b0}
+
+\begin{DoxyCompactList}\small\item\em Display brightness for display control register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_t_m1638}{T\+M1638} class. 
+
+Definition at line 154 of file T\+M1638.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{T\+M1638@{T\+M1638}!T\+M1638@{T\+M1638}}
+\index{T\+M1638@{T\+M1638}!T\+M1638@{T\+M1638}}
+\subsubsection[{\texorpdfstring{T\+M1638(uint8\+\_\+t clk\+Pin, uint8\+\_\+t dio\+Pin, uint8\+\_\+t stb\+Pin, bool display\+On=true, uint8\+\_\+t brightness=5)}{TM1638(uint8_t clkPin, uint8_t dioPin, uint8_t stbPin, bool displayOn=true, uint8_t brightness=5)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+M1638\+::\+T\+M1638 (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{clk\+Pin, }
+\item[{uint8\+\_\+t}]{dio\+Pin, }
+\item[{uint8\+\_\+t}]{stb\+Pin, }
+\item[{bool}]{display\+On = {\ttfamily true}, }
+\item[{uint8\+\_\+t}]{brightness = {\ttfamily 5}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_t_m1638_af4c0f8d4f26e8cbe64bd9f46a8027127}{}\label{class_t_m1638_af4c0f8d4f26e8cbe64bd9f46a8027127}
+
+
+\hyperlink{class_t_m1638}{T\+M1638} constructor. 
+
+Constructor with pin arguments\+: C-\/\+D-\/E (Clock, Data, Enable) 
+\begin{DoxyParams}{Parameters}
+{\em clk\+Pin} & \hyperlink{class_t_m1638}{T\+M1638} C\+LK pin. \\
+\hline
+{\em dio\+Pin} & \hyperlink{class_t_m1638}{T\+M1638} D\+IO pin. \\
+\hline
+{\em stb\+Pin} & \hyperlink{class_t_m1638}{T\+M1638} S\+TB pin. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 43 of file T\+M1638.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{T\+M1638@{T\+M1638}!get\+Keys@{get\+Keys}}
+\index{get\+Keys@{get\+Keys}!T\+M1638@{T\+M1638}}
+\subsubsection[{\texorpdfstring{get\+Keys()}{getKeys()}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t T\+M1638\+::get\+Keys (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_t_m1638_a4a0058c130c0368a2651c7dbc5eaa5a0}{}\label{class_t_m1638_a4a0058c130c0368a2651c7dbc5eaa5a0}
+
+
+Get key states. 
+
+\begin{DoxyReturn}{Returns}
+One or more buttons. One bit per button. 
+\end{DoxyReturn}
+
+
+Definition at line 190 of file T\+M1638.\+cpp.
+
+\index{T\+M1638@{T\+M1638}!read\+Byte@{read\+Byte}}
+\index{read\+Byte@{read\+Byte}!T\+M1638@{T\+M1638}}
+\subsubsection[{\texorpdfstring{read\+Byte()}{readByte()}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t T\+M1638\+::read\+Byte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\hypertarget{class_t_m1638_a77d2141b59a47d111a344b0b892a5b9c}{}\label{class_t_m1638_a77d2141b59a47d111a344b0b892a5b9c}
+
+
+Read byte from \hyperlink{class_t_m1638}{T\+M1638}. 
+
+\begin{DoxyReturn}{Returns}
+8-\/bit value. 
+\end{DoxyReturn}
+
+
+Definition at line 251 of file T\+M1638.\+cpp.
+
+\index{T\+M1638@{T\+M1638}!set\+Brightness@{set\+Brightness}}
+\index{set\+Brightness@{set\+Brightness}!T\+M1638@{T\+M1638}}
+\subsubsection[{\texorpdfstring{set\+Brightness(uint8\+\_\+t brightness)}{setBrightness(uint8_t brightness)}}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M1638\+::set\+Brightness (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{brightness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_t_m1638_a8bb2b1073f8f4f43258fc8cabb8eb8a2}{}\label{class_t_m1638_a8bb2b1073f8f4f43258fc8cabb8eb8a2}
+
+
+Set brightness L\+ED\textquotesingle{}s. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em brightness} & Display brightness value 0..7 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 124 of file T\+M1638.\+cpp.
+
+\index{T\+M1638@{T\+M1638}!write\+Byte@{write\+Byte}}
+\index{write\+Byte@{write\+Byte}!T\+M1638@{T\+M1638}}
+\subsubsection[{\texorpdfstring{write\+Byte(uint8\+\_\+t data)}{writeByte(uint8_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M1638\+::write\+Byte (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\hypertarget{class_t_m1638_a77095cfe4540b143bdca42305c528b2f}{}\label{class_t_m1638_a77095cfe4540b143bdca42305c528b2f}
+
+
+Write byte to \hyperlink{class_t_m1638}{T\+M1638}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & 8-\/bit value. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 232 of file T\+M1638.\+cpp.
+
+\index{T\+M1638@{T\+M1638}!write\+Data@{write\+Data}}
+\index{write\+Data@{write\+Data}!T\+M1638@{T\+M1638}}
+\subsubsection[{\texorpdfstring{write\+Data(uint8\+\_\+t address, uint8\+\_\+t data)}{writeData(uint8_t address, uint8_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M1638\+::write\+Data (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{address, }
+\item[{uint8\+\_\+t}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_t_m1638_a34dc8c06e3a863260aab1c61ddae875a}{}\label{class_t_m1638_a34dc8c06e3a863260aab1c61ddae875a}
+
+
+Write display register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & Display address 0x00..0x0F \\
+\hline
+{\em data} & Value 0x00..0x\+FF \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 151 of file T\+M1638.\+cpp.
+
+\index{T\+M1638@{T\+M1638}!write\+Data@{write\+Data}}
+\index{write\+Data@{write\+Data}!T\+M1638@{T\+M1638}}
+\subsubsection[{\texorpdfstring{write\+Data(uint8\+\_\+t address, const uint8\+\_\+t $\ast$buf, uint8\+\_\+t len)}{writeData(uint8_t address, const uint8_t *buf, uint8_t len)}}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M1638\+::write\+Data (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{address, }
+\item[{const uint8\+\_\+t $\ast$}]{buf, }
+\item[{uint8\+\_\+t}]{len}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{class_t_m1638_acff71225b60887fe9ab8c1aac2b45bf5}{}\label{class_t_m1638_acff71225b60887fe9ab8c1aac2b45bf5}
+
+
+Write buffer to multiple display registers. 
+
+Write buffer to \hyperlink{class_t_m1638}{T\+M1638} with auto address increment 
+\begin{DoxyParams}{Parameters}
+{\em address} & Display address 0x00..0x0F \\
+\hline
+{\em buf} & Buffer \\
+\hline
+{\em len} & Buffer length \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 173 of file T\+M1638.\+cpp.
+
+\index{T\+M1638@{T\+M1638}!write\+Display\+Control@{write\+Display\+Control}}
+\index{write\+Display\+Control@{write\+Display\+Control}!T\+M1638@{T\+M1638}}
+\subsubsection[{\texorpdfstring{write\+Display\+Control()}{writeDisplayControl()}}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M1638\+::write\+Display\+Control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\hypertarget{class_t_m1638_a2ad9cd6d6c86595868f2c44d61cb1385}{}\label{class_t_m1638_a2ad9cd6d6c86595868f2c44d61cb1385}
+
+
+Write display control register. 
+
+Set brightness and display on/off 
+
+Definition at line 211 of file T\+M1638.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_t_m1638_8h}{T\+M1638.\+h}\item 
+\hyperlink{_t_m1638_8cpp}{T\+M1638.\+cpp}\end{DoxyCompactItemize}
