@@ -17,5 +17,5 @@ echo 'Setting up the script...'
 set -e
 
 # Build sources
-   - platformio ci --lib="." --project-conf=platformio/platformio.ini examples/Benchmark/Benchmark.ino
-   - platformio ci --lib="." --project-conf=platformio/platformio.ini examples/Example/Example.ino
+platformio ci --lib="." --project-conf=platformio/platformio.ini examples/Benchmark/Benchmark.ino
+platformio ci --lib="." --project-conf=platformio/platformio.ini examples/Example/Example.ino
