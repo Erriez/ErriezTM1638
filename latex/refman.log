@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.8.2)  2 AUG 2018 17:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.8.2)  2 AUG 2018 19:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1142,15 +1142,13 @@ Overfull \vbox (40.05693pt too high) has occurred while \output is active []
 
 ]
 LaTeX Font Info:    Font shape `TS1/phv/bx/n' in size <10> not available
-(Font)              Font shape `TS1/phv/b/n' tried instead on input line 104.
+(Font)              Font shape `TS1/phv/b/n' tried instead on input line 106.
 LaTeX Font Info:    Font shape `TS1/phv/b/n' will be
-(Font)              scaled to size 8.99994pt on input line 104.
+(Font)              scaled to size 8.99994pt on input line 106.
  [2]
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 185.
-) [3] [4
-
-]
+(Font)              scaled to size 8.99994pt on input line 187.
+ [3]) [4]
 Chapter 2.
 (./annotated.tex
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
@@ -1159,7 +1157,9 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
-) [5] [6
+) [5
+
+] [6
 
 ]
 Chapter 3.
@@ -1337,7 +1337,7 @@ hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8ac.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (21 pages, 131266 bytes).
+Output written on refman.pdf (21 pages, 131466 bytes).
 PDF statistics:
  524 PDF objects out of 1000 (max. 8388607)
  465 compressed objects within 5 object streams
