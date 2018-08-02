@@ -22,25 +22,28 @@
  * SOFTWARE.
  */
 
-/* TM1638 library for Arduino
- * https://github.com/Erriez/ErriezTM1638
+/*!
+ * \file TM1638.ino
+ * \brief TM1638 library for Arduino
+ * \details
+ *      Source:         https://github.com/Erriez/ErriezTM1638
+ *      Documentation:  https://erriez.github.io/ErriezTM1638
  */
 
 #include <Arduino.h>
 #include <TM1638.h>
 
 // Connect display pins to the Arduino DIGITAL pins
-#if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_NANO) || defined(ARDUINO_AVR_MICRO) || \
-    defined(ARDUINO_AVR_PRO) || defined(ARDUINO_AVR_MEGA2560) || defined(ARDUINO_AVR_LEONARDO)
-#define TM1638_SCL_PIN      2
+#if defined(ARDUINO_ARCH_AVR)
+#define TM1638_CLK_PIN      2
 #define TM1638_DIO_PIN      3
 #define TM1638_STB0_PIN     4
-#elif defined(ARDUINO_ESP8266_WEMOS_D1MINI) || defined(ARDUINO_ESP8266_NODEMCU)
-#define TM1638_SCL_PIN      D2
+#elif defined(ARDUINO_ESP8266_WEMOS_D1MINI) || defined(ESP8266_WEMOS_D1MINI) || defined(ARDUINO_ESP8266_NODEMCU)
+#define TM1638_CLK_PIN      D2
 #define TM1638_DIO_PIN      D3
 #define TM1638_STB0_PIN     D4
 #elif defined(ARDUINO_LOLIN32)
-#define TM1638_SCL_PIN      0
+#define TM1638_CLK_PIN      0
 #define TM1638_DIO_PIN      4
 #define TM1638_STB0_PIN     5
 #else
@@ -48,7 +51,7 @@
 #endif
 
 // Create tm1638 object
-TM1638 tm1638(TM1638_SCL_PIN, TM1638_DIO_PIN, TM1638_STB0_PIN);
+TM1638 tm1638(TM1638_CLK_PIN, TM1638_DIO_PIN, TM1638_STB0_PIN);
 
 
 void setup()

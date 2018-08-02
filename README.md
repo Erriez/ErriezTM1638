@@ -37,7 +37,9 @@ The following TM1638 pins should be connected to LED's and buttons in a matrix:
 
 ## Example
 
-* Examples | Erriez TM1638 | [Example](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Example/Example.ino)
+Arduino IDE | Examples | Erriez TM1638 button and LED driver:
+
+* [TM1638](https://github.com/Erriez/ErriezTM1638/blob/master/examples/TM1638/TM1638.ino)
 
 
 ## Documentation

@@ -9,4 +9,4 @@
 
 # Build example(s)
 platformio ci --lib=".." --project-conf=platformio.ini ../examples/Benchmark/Benchmark.ino
-platformio ci --lib=".." --project-conf=platformio.ini ../examples/Example/Example.ino
+platformio ci --lib=".." --project-conf=platformio.ini ../examples/TM1638/TM1638.ino
