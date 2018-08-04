@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file Benchmark.ino
  * \brief TM1638 benchmark example
  * \details
  *    Required libraries:
