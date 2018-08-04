@@ -23,7 +23,7 @@
  */
 
 /*!
- * \file TM1638.h
+ * \file ErriezTM1638.h
  * \brief TM1638 library for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezTM1638
@@ -76,8 +76,8 @@
    \endverbatim
  */
 
-#ifndef TM1638_H__
-#define TM1638_H__
+#ifndef ERRIEZ_TM1638_H_
+#define ERRIEZ_TM1638_H_
 
 #include <Arduino.h>
 
@@ -191,4 +191,4 @@ protected:
     virtual uint8_t readByte();
 };
 
-#endif // TM1638_H__
+#endif // ERRIEZ_TM1638_H_

@@ -33,8 +33,8 @@
 
 #include <Arduino.h>
 
-#include <TM1638.h>
-#include <Timestamp.h>
+#include <ErriezTM1638.h>
+#include <ErriezTimestamp.h>
 
 // Connect display pins to the Arduino DIGITAL pins
 #if defined(ARDUINO_ARCH_AVR)

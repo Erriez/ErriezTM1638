@@ -23,14 +23,14 @@
  */
 
 /*!
- * \file TM1638.cpp
+ * \file ErriezTM1638.cpp
  * \brief TM1638 library for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezTM1638
  *      Documentation:  https://erriez.github.io/ErriezTM1638
  */
 
-#include "TM1638.h"
+#include "ErriezTM1638.h"
 
 /*!
  * \brief TM1638 constructor

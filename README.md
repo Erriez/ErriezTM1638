@@ -55,8 +55,8 @@ Arduino IDE | Examples | Erriez TM1638 button and LED driver:
 
 ```c++
 // Include TM1638 library
-#include "TM1638.h"
-  
+#include <ErriezTM1638.h>
+
 // Connect display pins to the Arduino DIGITAL pins
 #define TM1638_CLK_PIN   2
 #define TM1638_DIO_PIN   3

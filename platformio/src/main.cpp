@@ -23,7 +23,6 @@
  */
 
 /*!
- * \file TM1638.ino
  * \brief TM1638 library for Arduino
  * \details
  *      Source:         https://github.com/Erriez/ErriezTM1638
@@ -31,7 +30,7 @@
  */
 
 #include <Arduino.h>
-#include <TM1638.h>
+#include <ErriezTM1638.h>
 
 // Connect display pins to the Arduino DIGITAL pins
 #if defined(ARDUINO_ARCH_AVR)
