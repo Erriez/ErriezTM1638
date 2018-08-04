@@ -30,8 +30,6 @@
  *       https://github.com/Erriez/ErriezTimestamp
  */
 
-#include <Arduino.h>
-
 #include <ErriezTM1638.h>
 #include <ErriezTimestamp.h>
 
