@@ -39,13 +39,13 @@ The following TM1638 pins should be connected to LED's and buttons in a matrix:
 
 Arduino IDE | Examples | Erriez TM1638 button and LED driver:
 
-* [TM1638](https://github.com/Erriez/ErriezTM1638/blob/master/examples/TM1638/TM1638.ino)
+* [ErriezTM1638](https://github.com/Erriez/ErriezTM1638/blob/master/examples/ErriezTM1638/ErriezTM1638.ino)
 
 
 ## Documentation
 
 - [Doxygen online HTML](https://Erriez.github.io/ErriezTM1638)
-- [Doxygen PDF](https://github.com/Erriez/ErriezTM1638/raw/gh-pages/latex/ErriezTM1638.pdf)
+- [Doxygen PDF](https://github.com/Erriez/ErriezTM1638/raw/master/ErriezTM1638.pdf)
 - [TM1638 Datasheet](https://github.com/Erriez/ErriezTM1638/blob/master/extras/TM1638_datasheet.pdf)
 
 
@@ -149,7 +149,7 @@ Output [Benchmark](https://github.com/Erriez/ErriezTM1638/blob/master/examples/B
 
 ## Library dependencies
 
-- The [Benchmark](https://github.com/Erriez/ErriezTM1638/blob/master/examples/Benchmark/Benchmark.ino) example uses [Erriez Timestamp](https://github.com/Erriez/ErriezTimestamp) library.
+- The [ErriezTM1638Benchmark](https://github.com/Erriez/ErriezTM1638/blob/master/examples/ErriezTM1638Benchmark/ErriezTM1638Benchmark.ino) example uses [Erriez Timestamp](https://github.com/Erriez/ErriezTimestamp) library.
 
 
 ## Library installation
